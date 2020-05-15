@@ -3,15 +3,26 @@
 namespace App\Http\Controllers\Base;
 
 use Laravel\Lumen\Routing\Controller;
+use Tymon\JWTAuth\JWTAuth;
 
 class BaseController extends Controller
 {
     
-    protected $ocorreuErro; 
-    protected $descricaoErro; 
-    protected $ocorreuAlerta; 
-    protected $descricaoAlerta; 
-   
+    private $ocorreuErro; 
+    private $descricaoErro; 
+    private $ocorreuAlerta; 
+    private $descricaoAlerta; 
+    private $jwt;
+    
+    public function __construct(JWTAuth $jwt) 
+    {
+        $this->jwt = $jwt;
+        
+        $this->middleware('auth:api', [
+            'except' => 'login'
+        ]);
+    }
+    
     /**
      * Setar variaveis como sucesso
      */
