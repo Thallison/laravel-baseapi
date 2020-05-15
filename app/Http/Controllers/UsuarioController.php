@@ -29,12 +29,38 @@ class UsuarioController extends BaseController
         );
         $this->validate($request, $rules);
         
+
         //adiciono a informação de e-mail ao token
         if(!$token = $this->jwt->claims(['email' => $request->email])->attempt($request->only('email','password'))){
             return response()->json(['Usuario ou senha não encontrado'], 404);
         }
-        
+     
         return response()->json(compact('token'));    
+    }
+    
+    /**
+     * Função para cadastrar um usuário
+     * @param Request $request
+     * @return type
+     */
+    public function cadastrarUsuario(Request $request) {
+        //validação
+        $rules = array(
+            'name' => 'required|min:5|max:40',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required',
+        );
+        
+        $this->validate($request, $rules);
+
+        $usuario = new \App\User();
+        
+        $usuario->name = $request->name;
+        $usuario->email = $request->email;
+        $usuario->password = Hash::make($request->password);
+        $usuario->save();
+        
+        return response()->json($usuario);      
     }
     
     public function teste() {
