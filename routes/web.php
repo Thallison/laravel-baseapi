@@ -15,4 +15,7 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/teste', 'UsuarioController@teste');
+$router->post('/login', 'UsuarioController@login');
+$router->post('/info', 'UsuarioController@mostrarUsuarioAutenticado');
+$router->post('/logout', 'UsuarioController@usuarioLogout');
+$router->post('/usuario/cadastrar', 'UsuarioController@cadastrarUsuario');
