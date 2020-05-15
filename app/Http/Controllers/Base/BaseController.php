@@ -52,7 +52,7 @@ class BaseController extends Controller
      * @param type $data
      * @return type json
      */
-    protected function setSucess($data = '')
+    protected function setSucesso($data = '')
     {
         $this->setRetornoSucesso();
         return $this->montaJSON(array('data' => $data));
@@ -63,7 +63,7 @@ class BaseController extends Controller
      * @param type $msg
      * @return type json
      */
-    protected function setAlert($msg)
+    protected function setAlerta($msg)
     {
         $this->setRetornoAlerta($msg);
         return $this->montaJSON();
@@ -74,7 +74,7 @@ class BaseController extends Controller
      * @param type $msg
      * @return type json
      */
-    protected function setError($msg)
+    protected function setErro($msg)
     {
         $this->setRetornoErro($msg);
         return $this->montaJSON();

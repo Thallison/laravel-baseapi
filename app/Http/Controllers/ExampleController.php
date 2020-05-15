@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-class ExampleController extends Controller
+use App\Http\Controllers\Base\BaseController;
+
+class ExampleController extends BaseController
 {
     /**
      * Create a new controller instance.
